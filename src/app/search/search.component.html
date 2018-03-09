@@ -1,0 +1,32 @@
+<form #form="ngForm" novalidate>
+  <div class="form-group">
+    <label for="selFrom" class="sr-only">From</label>
+    <select class="form-control" ngModel name="selFrom" required>
+      <option aria-placeholder="From">From</option>
+      <ng-container *ngFor="let departure of dealsList">
+        <option *ngIf="compare(departure.departure)">{{departure.departure}}</option>
+      </ng-container>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="selTo" class="sr-only">To</label>
+    <select class="form-control" ngModel name="selTo" required>
+      <option>To</option>
+      <ng-container *ngFor="let arrival of dealsList">
+        <option *ngIf="compare(arrival.arrival)">{{arrival.arrival}}</option>
+      </ng-container>
+    </select>
+  </div>
+  <div style="text-align: center;/* width: 100%; */margin:  auto;">
+    <div class="btn-group btn-group-toggle" data-toggle="buttons" style="text-align: center" ngModel ngbRadioGroup name="sort">
+      <label class="btn btn-light" ngbButtonLabel>
+        <input type="radio" value="cheapest" ngbButton> Cheapest
+      </label>
+      <label class="btn btn-light" ngbButtonLabel>
+        <input type="radio" value="fastest" ngbButton> Fastest
+      </label>
+    </div>
+  </div>
+  <br/>
+  <button routerLink="/results" (click)="doSearch(form.value)" class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!form.valid">SEARCH</button>
+</form>

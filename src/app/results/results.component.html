@@ -1,0 +1,38 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb head-list">
+    <li class="breadcrumb-item">{{query.selFrom}}</li>
+    <li class="breadcrumb-item">{{query.selTo}}</li>
+    <li *ngIf="query.cheapest" class="breadcrumb-item">{{query.cheapest}}</li>
+    <li *ngIf="query.fastest" class="breadcrumb-item">{{query.fastest}}</li>
+  </ol>
+</nav>
+<div class="container" *ngIf="query.sort === 'cheapest'">
+  <ng-container *ngFor="let deal of (results | filter:'price')">
+    <div class="row" *ngIf="deal.departure === query.selFrom && deal.arrival === query.selTo">
+      <div class="col-sm-12 result-item">
+        <div class="card card-item">
+          <div class="card-body">
+            <h5 class="card-title">{{deal.departure}} > {{deal.arrival}} - {{deal.cost | currency:'EUR': true}}</h5>
+            <p class="card-text">{{deal.transport}} {{deal.reference}} for {{deal.duration.h}}:{{deal.duration.m}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<div class="container" *ngIf="query.sort === 'fastest'">
+    <ng-container *ngFor="let deal of (results | filter:'speed')">
+      <div class="row" *ngIf="deal.departure === query.selFrom && deal.arrival === query.selTo">
+        <div class="col-sm-12 result-item">
+          <div class="card card-item">
+            <div class="card-body">
+              <h5 class="card-title">{{deal.departure}} > {{deal.arrival}} - {{deal.cost | currency:'EUR': true}}</h5>
+              <p class="card-text">{{deal.transport}} {{deal.reference}} for {{deal.duration.h}}:{{deal.duration.m}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+<br/>
+<button routerLink="/" class="btn btn-lg btn-primary btn-block">RESET</button>

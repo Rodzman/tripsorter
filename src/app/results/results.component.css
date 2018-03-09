@@ -1,0 +1,15 @@
+.result-item{
+    padding: 5px 0 5px 0 !important;
+}
+
+.card-item{
+    background: #00265629 !important;
+    border: 1px solid #00408573;
+    -webkit-box-shadow: 0px 0px 1px 1px #0040852e;
+    box-shadow: 0px 0px 1px 1px #0040852e;
+    color: #bee2ff;
+}
+
+.head-list{
+    background: #b2dbff5c;
+}
