@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { ResultsComponent } from './results/results.component';
 import { SearchComponent } from './search/search.component';
-import { ResultsItemComponent } from './results/results-item/results-item.component';
 import { TripService } from './trip.service';
 import { RouterModule, Routes } from '@angular/router';
 import { appRoutes } from './app.routes';
@@ -23,7 +22,6 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MainComponent,
     ResultsComponent,
     SearchComponent,
-    ResultsItemComponent,
     FilterPipe
   ],
   imports: [
