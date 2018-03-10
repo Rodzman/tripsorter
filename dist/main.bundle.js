@@ -46,7 +46,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 var AppComponent = (function () {
     function AppComponent() {
-        this.title = 'app';
+        this.title = 'TripSorter'; //App title
+        this.slogan = 'Search your trip!'; //App Slogan
+        this.signature = '© Rodzman - 2018'; //App signature
     }
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -82,12 +84,14 @@ var AppComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__angular_common__ = __webpack_require__("./node_modules/@angular/common/esm5/common.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__search_filter_pipe__ = __webpack_require__("./src/app/search/filter.pipe.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ng_bootstrap_ng_bootstrap__ = __webpack_require__("./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__results_results_item_results_item_component__ = __webpack_require__("./src/app/results/results-item/results-item.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -113,7 +117,8 @@ var AppModule = (function () {
                 __WEBPACK_IMPORTED_MODULE_4__main_main_component__["a" /* MainComponent */],
                 __WEBPACK_IMPORTED_MODULE_5__results_results_component__["a" /* ResultsComponent */],
                 __WEBPACK_IMPORTED_MODULE_6__search_search_component__["a" /* SearchComponent */],
-                __WEBPACK_IMPORTED_MODULE_13__search_filter_pipe__["a" /* FilterPipe */]
+                __WEBPACK_IMPORTED_MODULE_13__search_filter_pipe__["a" /* FilterPipe */],
+                __WEBPACK_IMPORTED_MODULE_15__results_results_item_results_item_component__["a" /* ResultsItemComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -145,30 +150,27 @@ var AppModule = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__main_main_component__ = __webpack_require__("./src/app/main/main.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__results_results_component__ = __webpack_require__("./src/app/results/results.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__search_search_component__ = __webpack_require__("./src/app/search/search.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__results_results_item_results_item_component__ = __webpack_require__("./src/app/results/results-item/results-item.component.ts");
 
 
 
+
+// Let's export our app routes
 var appRoutes = [
     { path: '', component: __WEBPACK_IMPORTED_MODULE_0__main_main_component__["a" /* MainComponent */] },
     { path: '', redirectTo: '/main', pathMatch: 'full' },
     { path: 'results', component: __WEBPACK_IMPORTED_MODULE_1__results_results_component__["a" /* ResultsComponent */] },
-    { path: 'search', component: __WEBPACK_IMPORTED_MODULE_2__search_search_component__["a" /* SearchComponent */] }
+    { path: 'results/result', component: __WEBPACK_IMPORTED_MODULE_3__results_results_item_results_item_component__["a" /* ResultsItemComponent */] },
+    { path: 'search', component: __WEBPACK_IMPORTED_MODULE_2__search_search_component__["a" /* SearchComponent */] } //rout to the search component, the one responsible for the initial form
 ];
 
-
-/***/ }),
-
-/***/ "./src/app/main/main.component.css":
-/***/ (function(module, exports) {
-
-module.exports = ""
 
 /***/ }),
 
 /***/ "./src/app/main/main.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-signin\">\n  <h1 class=\"apptitle\">TripSorter</h1>\n  <h1 class=\"h3 mb-3 font-weight-normal catch\">Search your trip!</h1>\n  <app-search></app-search>\n  <p class=\"mt-5 mb-3 text-muted text-center\">© Rodzman - 2018</p>\n</form>"
+module.exports = "<form class=\"form-signin\">\n  <!-- app title start -->\n  <h1 class=\"apptitle\">{{title}}</h1>\n  <!-- app title end -->\n  <!-- app slogan start -->\n  <h1 class=\"h3 mb-3 font-weight-normal catch\">{{slogan}}</h1>\n  <!-- app slogan end -->\n  <!-- form component start -->\n  <app-search></app-search>\n  <!-- form component end -->\n  <!-- signature element start -->\n  <p class=\"mt-5 mb-3 text-muted text-center\">{{signature}}</p>\n  <!-- signature element end -->\n</form>"
 
 /***/ }),
 
@@ -178,6 +180,7 @@ module.exports = "<form class=\"form-signin\">\n  <h1 class=\"apptitle\">TripSor
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MainComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_component__ = __webpack_require__("./src/app/app.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -188,20 +191,93 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var MainComponent = (function () {
-    function MainComponent() {
+    function MainComponent(appComponent) {
+        this.appComponent = appComponent;
+        this.title = this.appComponent.title; //loads the app title from the appcomponent
+        this.slogan = this.appComponent.slogan; //loads the slogan from the appcomponent
+        this.signature = this.appComponent.signature; //loads the signature from the appcomponent
     }
     MainComponent.prototype.ngOnInit = function () {
     };
     MainComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-main',
-            template: __webpack_require__("./src/app/main/main.component.html"),
-            styles: [__webpack_require__("./src/app/main/main.component.css")]
+            template: __webpack_require__("./src/app/main/main.component.html")
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__app_component__["a" /* AppComponent */]])
     ], MainComponent);
     return MainComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/results/results-item/results-item.component.css":
+/***/ (function(module, exports) {
+
+module.exports = "/* CLASSES THAT STYLES THE INDIVIDUAL BOX */\r\n.result-item{\r\n    padding: 5px 0 5px 0 !important;\r\n}\r\n.card-item{\r\n    background: #00265629 !important;\r\n    border: 1px solid #00408573;\r\n    -webkit-box-shadow: 0px 0px 1px 1px #0040852e;\r\n    box-shadow: 0px 0px 1px 1px #0040852e;\r\n    color: #bee2ff;\r\n}\r\n\r\n"
+
+/***/ }),
+
+/***/ "./src/app/results/results-item/results-item.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<!-- START RESULTS -->\n<!-- no results match START -->\n<div *ngIf=\"results.length === 0\" class=\"container\">\n  <div class=\"row\">\n    <div class=\"col-sm-12\">\n      <p>No results found that match your criteria.</p>\n      <p>Please, search again!</p>\n    </div>\n  </div>\n</div>\n<!-- no results match END -->\n<!-- results match START -->\n<div *ngIf=\"results.lenght !== 0\" class=\"container\">\n  <ng-container *ngFor=\"let deal of (results | filter: query.sort)\">\n    <div class=\"row\" *ngIf=\"deal.departure === query.selFrom && deal.arrival === query.selTo\">\n      <div class=\"col-sm-12 result-item\">\n        <div class=\"card card-item\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">{{deal.departure}} > {{deal.arrival}} - {{deal.cost | currency:'EUR': true}}</h5>\n            <p class=\"card-text\">{{deal.transport}} {{deal.reference}} for {{deal.duration.h}}:{{deal.duration.m}}</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </ng-container>\n</div>\n<!-- results match END -->\n<!-- END RESULTS -->"
+
+/***/ }),
+
+/***/ "./src/app/results/results-item/results-item.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResultsItemComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__trip_service__ = __webpack_require__("./src/app/trip.service.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+// This component is responsible for the single result box
+
+
+var ResultsItemComponent = (function () {
+    function ResultsItemComponent(tripService) {
+        this.tripService = tripService;
+    }
+    ResultsItemComponent.prototype.ngOnInit = function () {
+        this.doQuery(); // Execute the query on init
+    };
+    // Method to get the query from the form (search) and send to service (tripservice) to get the results
+    ResultsItemComponent.prototype.doQuery = function () {
+        this.query = this.tripService.searchQuery; //get the query form the form
+        this.tripService.listTrips(); //call the service method (listTrips) and get the response from the json
+        this.results = this.tripService.results; //load response on the component variable
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+        __metadata("design:type", Array)
+    ], ResultsItemComponent.prototype, "query", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+        __metadata("design:type", Array)
+    ], ResultsItemComponent.prototype, "results", void 0);
+    ResultsItemComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-results-item',
+            template: __webpack_require__("./src/app/results/results-item/results-item.component.html"),
+            styles: [__webpack_require__("./src/app/results/results-item/results-item.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__trip_service__["a" /* TripService */]])
+    ], ResultsItemComponent);
+    return ResultsItemComponent;
 }());
 
 
@@ -211,14 +287,14 @@ var MainComponent = (function () {
 /***/ "./src/app/results/results.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ".result-item{\r\n    padding: 5px 0 5px 0 !important;\r\n}\r\n\r\n.card-item{\r\n    background: #00265629 !important;\r\n    border: 1px solid #00408573;\r\n    -webkit-box-shadow: 0px 0px 1px 1px #0040852e;\r\n    box-shadow: 0px 0px 1px 1px #0040852e;\r\n    color: #bee2ff;\r\n}\r\n\r\n.head-list{\r\n    background: #b2dbff5c;\r\n}\r\n"
+module.exports = "\r\n.head-list{\r\n    background: #b2dbff5c;\r\n}"
 
 /***/ }),
 
 /***/ "./src/app/results/results.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav aria-label=\"breadcrumb\">\n  <ol class=\"breadcrumb head-list\">\n    <li class=\"breadcrumb-item\">{{query.selFrom}}</li>\n    <li class=\"breadcrumb-item\">{{query.selTo}}</li>\n    <li *ngIf=\"query.cheapest\" class=\"breadcrumb-item\">{{query.cheapest}}</li>\n    <li *ngIf=\"query.fastest\" class=\"breadcrumb-item\">{{query.fastest}}</li>\n  </ol>\n</nav>\n<div class=\"container\" *ngIf=\"query.sort === 'cheapest'\">\n  <ng-container *ngFor=\"let deal of (results | filter:'price')\">\n    <div class=\"row\" *ngIf=\"deal.departure === query.selFrom && deal.arrival === query.selTo\">\n      <div class=\"col-sm-12 result-item\">\n        <div class=\"card card-item\">\n          <div class=\"card-body\">\n            <h5 class=\"card-title\">{{deal.departure}} > {{deal.arrival}} - {{deal.cost | currency:'EUR': true}}</h5>\n            <p class=\"card-text\">{{deal.transport}} {{deal.reference}} for {{deal.duration.h}}:{{deal.duration.m}}</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </ng-container>\n</div>\n<div class=\"container\" *ngIf=\"query.sort === 'fastest'\">\n    <ng-container *ngFor=\"let deal of (results | filter:'speed')\">\n      <div class=\"row\" *ngIf=\"deal.departure === query.selFrom && deal.arrival === query.selTo\">\n        <div class=\"col-sm-12 result-item\">\n          <div class=\"card card-item\">\n            <div class=\"card-body\">\n              <h5 class=\"card-title\">{{deal.departure}} > {{deal.arrival}} - {{deal.cost | currency:'EUR': true}}</h5>\n              <p class=\"card-text\">{{deal.transport}} {{deal.reference}} for {{deal.duration.h}}:{{deal.duration.m}}</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </ng-container>\n  </div>\n<br/>\n<button routerLink=\"/\" class=\"btn btn-lg btn-primary btn-block\">RESET</button>"
+module.exports = "<nav aria-label=\"breadcrumb\">\n  <ol class=\"breadcrumb head-list\">\n    <li class=\"breadcrumb-item\">{{query.selFrom}}</li>\n    <li class=\"breadcrumb-item\">{{query.selTo}}</li>\n    <li *ngIf=\"query.cheapest\" class=\"breadcrumb-item\">{{query.cheapest}}</li>\n    <li *ngIf=\"query.fastest\" class=\"breadcrumb-item\">{{query.fastest}}</li>\n  </ol>\n</nav>\n<app-results-item></app-results-item>\n<br/>\n<button routerLink=\"/\" class=\"btn btn-lg btn-primary btn-block\">RESET</button>"
 
 /***/ }),
 
@@ -238,6 +314,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+// This component is responsible for showing the query results
 
 
 var ResultsComponent = (function () {
@@ -245,22 +322,12 @@ var ResultsComponent = (function () {
         this.tripService = tripService;
     }
     ResultsComponent.prototype.ngOnInit = function () {
-        this.doQuery();
-        console.log(this.query);
-    };
-    ResultsComponent.prototype.doQuery = function () {
-        this.query = this.tripService.searchQuery;
-        this.tripService.listTrips();
-        this.results = this.tripService.results;
+        this.query = this.tripService.searchQuery; //get the query from the service on init
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
         __metadata("design:type", Array)
     ], ResultsComponent.prototype, "query", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
-        __metadata("design:type", Array)
-    ], ResultsComponent.prototype, "results", void 0);
     ResultsComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-results',
@@ -298,20 +365,20 @@ var FilterPipe = (function () {
     function FilterPipe(tripService) {
         this.tripService = tripService;
     }
+    // pipe that gets the sort type, call the respective method on the service and returns the results
     FilterPipe.prototype.transform = function (items, filter) {
-        console.log(items, filter);
-        if (filter === 'price') {
-            this.tripService.sortPrice();
-            return this.tripService.results;
+        if (filter === 'cheapest') {
+            this.tripService.sortPrice(); //method on serice that sorts by price
+            return this.tripService.results; //return the list
         }
-        else if (filter === 'speed') {
-            this.tripService.sortSpeed();
-            return this.tripService.results;
+        else if (filter === 'fastest') {
+            this.tripService.sortSpeed(); //method on service that sorts by speed
+            return this.tripService.results; //return the list
         }
     };
     FilterPipe = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["U" /* Pipe */])({
-            name: 'filter'
+            name: 'filter' //filter name 
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__trip_service__["a" /* TripService */]])
     ], FilterPipe);
@@ -332,7 +399,7 @@ module.exports = ""
 /***/ "./src/app/search/search.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form #form=\"ngForm\" novalidate>\n  <div class=\"form-group\">\n    <label for=\"selFrom\" class=\"sr-only\">From</label>\n    <select class=\"form-control\" ngModel name=\"selFrom\" required>\n      <option aria-placeholder=\"From\">From</option>\n      <ng-container *ngFor=\"let departure of dealsList\">\n        <option *ngIf=\"compare(departure.departure)\">{{departure.departure}}</option>\n      </ng-container>\n    </select>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"selTo\" class=\"sr-only\">To</label>\n    <select class=\"form-control\" ngModel name=\"selTo\" required>\n      <option>To</option>\n      <ng-container *ngFor=\"let arrival of dealsList\">\n        <option *ngIf=\"compare(arrival.arrival)\">{{arrival.arrival}}</option>\n      </ng-container>\n    </select>\n  </div>\n  <div style=\"text-align: center;/* width: 100%; */margin:  auto;\">\n    <div class=\"btn-group btn-group-toggle\" data-toggle=\"buttons\" style=\"text-align: center\" ngModel ngbRadioGroup name=\"sort\">\n      <label class=\"btn btn-light\" ngbButtonLabel>\n        <input type=\"radio\" value=\"cheapest\" ngbButton> Cheapest\n      </label>\n      <label class=\"btn btn-light\" ngbButtonLabel>\n        <input type=\"radio\" value=\"fastest\" ngbButton> Fastest\n      </label>\n    </div>\n  </div>\n  <br/>\n  <button routerLink=\"/results\" (click)=\"doSearch(form.value)\" class=\"btn btn-lg btn-primary btn-block\" type=\"submit\" [disabled]=\"!form.valid\">SEARCH</button>\n</form>"
+module.exports = "<form #form=\"ngForm\" novalidate>\n  <div class=\"form-group\">\n    <label for=\"selFrom\" class=\"sr-only\">From</label>\n    <select class=\"form-control\" ngModel name=\"selFrom\" required>\n      <option aria-placeholder=\"From\">From</option>\n      <ng-container *ngFor=\"let departure of dealsList\">\n        <option *ngIf=\"compare(departure.departure)\">{{departure.departure}}</option>\n      </ng-container>\n    </select>\n  </div>\n  <div class=\"form-group\">\n    <label for=\"selTo\" class=\"sr-only\">To</label>\n    <select class=\"form-control\" ngModel name=\"selTo\" required>\n      <option>To</option>\n      <ng-container *ngFor=\"let arrival of dealsList\">\n        <option *ngIf=\"compare(arrival.arrival)\">{{arrival.arrival}}</option>\n      </ng-container>\n    </select>\n  </div>\n  <div style=\"text-align: center;/* width: 100%; */margin:  auto;\">\n    <div class=\"btn-group btn-group-toggle\" data-toggle=\"buttons\" style=\"text-align: center\" ngModel ngbRadioGroup name=\"sort\" required>\n      <label class=\"btn btn-light\" ngbButtonLabel style=\"border-right: 1px solid #ccc;margin-right: 1px;\">\n        <input type=\"radio\" value=\"cheapest\" ngbButton> Cheapest\n      </label>\n      <label class=\"btn btn-light\" ngbButtonLabel>\n        <input type=\"radio\" value=\"fastest\" ngbButton> Fastest\n      </label>\n    </div>\n  </div>\n  <br/>\n  <button routerLink=\"/results\" (click)=\"doSearch(form.value)\" class=\"btn btn-lg btn-primary btn-block\" type=\"submit\" [disabled]=\"!form.valid\">SEARCH</button>\n</form>"
 
 /***/ }),
 
@@ -342,8 +409,8 @@ module.exports = "<form #form=\"ngForm\" novalidate>\n  <div class=\"form-group\
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__trip_service__ = __webpack_require__("./src/app/trip.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__trip_service__ = __webpack_require__("./src/app/trip.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -360,34 +427,35 @@ var SearchComponent = (function () {
     function SearchComponent(tripService, formBuilder) {
         this.tripService = tripService;
         this.formBuilder = formBuilder;
-        this.departureList = [];
-        this.teste = [];
-        this.citiesList = '';
+        this.citiesList = ''; //declare the cities
     }
     SearchComponent.prototype.ngOnInit = function () {
-        this.loadTrips();
+        this.loadTrips(); //let's call the method that gets the list from the json
         this.radioGroupForm = this.formBuilder.group({
             'model': 1
         });
     };
     SearchComponent.prototype.ngAfterContentInit = function () {
     };
+    // method the loads the json list to populate the selects
     SearchComponent.prototype.loadTrips = function () {
         var _this = this;
-        this.tripService.getTrips()
+        this.tripService.getTrips() //call the service method that observes the json
             .subscribe(function (trip) {
-            _this.dealsList = trip.deals;
+            _this.dealsList = trip.deals; //load the results to the variable
         });
     };
+    // method to compare each response item to filter the repeated cities
     SearchComponent.prototype.compare = function (city) {
         if (city !== this.citiesList) {
-            this.citiesList = city;
-            return true;
+            this.citiesList = city; //updates the city variable
+            return true; //if the city does not match, returns true to print the city on the select element
         }
         else {
-            return false;
+            return false; //f the city matches, returns false to print the city on the select element
         }
     };
+    // method that gets the form query and sends to the trip service
     SearchComponent.prototype.doSearch = function (form) {
         this.tripService.searchQuery = form;
     };
@@ -397,7 +465,7 @@ var SearchComponent = (function () {
             template: __webpack_require__("./src/app/search/search.component.html"),
             styles: [__webpack_require__("./src/app/search/search.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__trip_service__["a" /* TripService */], __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__trip_service__["a" /* TripService */], __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */]])
     ], SearchComponent);
     return SearchComponent;
 }());
@@ -433,35 +501,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var TripService = (function () {
     function TripService(http) {
         this.http = http;
-        this.apiURL = '../assets/response.json';
-        this.searchQuery = [];
+        this.apiURL = '../assets/response.json'; //json response address
+        this.searchQuery = []; //variable declared to get the query
         this.results = [];
     }
+    // Method that creates an observable to watch the json file and map the results
     TripService.prototype.getTrips = function () {
-        return this.http.get(this.apiURL)
-            .map(function (res) { return res.json(); });
+        return this.http.get(this.apiURL) //get the json
+            .map(function (res) { return res.json(); }); //map the response
     };
+    // Method that subscribe the observable and prepare the results
     TripService.prototype.listTrips = function () {
         var _this = this;
-        return this.getTrips()
+        return this.getTrips() //call the method to get the response
             .subscribe(function (trip) {
-            _this.results = trip.deals;
+            _this.results = trip.deals; //load values to the results variable
         });
     };
+    // Method that sorts the results by speed
     TripService.prototype.sortSpeed = function () {
         this.results
             .sort(function (a, b) {
-            return a.duration.m.valueOf() - b.duration.m.valueOf();
+            return a.duration.m.valueOf() - b.duration.m.valueOf(); //return the results sorted by minutes
         })
             .sort(function (a, b) {
-            return a.duration.h.valueOf() - b.duration.h.valueOf();
+            return a.duration.h.valueOf() - b.duration.h.valueOf(); //return the results sorted by hours
         });
     };
+    // Method that sorts the results by price
     TripService.prototype.sortPrice = function () {
         this.results
             .sort(function (a, b) {
-            console.log(a.cost);
-            return a.cost.valueOf() - b.cost.valueOf();
+            return a.cost.valueOf() - b.cost.valueOf(); //return the results sorted by costs
         });
     };
     __decorate([
