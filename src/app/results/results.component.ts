@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { TripService } from '../trip.service';
-import { SearchQuery, Deals } from '../trip.model';
-import { FilterPipe } from '../search/filter.pipe'
+// This component is responsible for showing the query results
+import { Component, OnInit, Input } from '@angular/core'
+import { TripService } from '../trip.service'
+import { SearchQuery, Deals } from '../trip.model'
 
 @Component({
   selector: 'app-results',
@@ -10,20 +10,12 @@ import { FilterPipe } from '../search/filter.pipe'
 })
 export class ResultsComponent implements OnInit {
 
-  @Input() query:SearchQuery[]
-  @Input() results: Deals[]
-
+  @Input() query:SearchQuery[] //get the query from form
+  
   constructor(private tripService: TripService) { }
 
   ngOnInit() {
-    this.doQuery()
-    console.log(this.query)
+    this.query = this.tripService.searchQuery //get the query from the service on init
   }
-
-  doQuery(){
-    this.query = this.tripService.searchQuery
-    this.tripService.listTrips()
-    this.results = this.tripService.results
-  }
-
+ 
 }

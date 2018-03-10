@@ -1,0 +1,28 @@
+<!-- START RESULTS -->
+<!-- no results match START -->
+<div *ngIf="results.length === 0" class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <p>No results found that match your criteria.</p>
+      <p>Please, search again!</p>
+    </div>
+  </div>
+</div>
+<!-- no results match END -->
+<!-- results match START -->
+<div *ngIf="results.lenght !== 0" class="container">
+  <ng-container *ngFor="let deal of (results | filter: query.sort)">
+    <div class="row" *ngIf="deal.departure === query.selFrom && deal.arrival === query.selTo">
+      <div class="col-sm-12 result-item">
+        <div class="card card-item">
+          <div class="card-body">
+            <h5 class="card-title">{{deal.departure}} > {{deal.arrival}} - {{deal.cost | currency:'EUR': true}}</h5>
+            <p class="card-text">{{deal.transport}} {{deal.reference}} for {{deal.duration.h}}:{{deal.duration.m}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<!-- results match END -->
+<!-- END RESULTS -->

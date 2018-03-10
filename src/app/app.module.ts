@@ -13,8 +13,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { CommonModule } from '@angular/common';
 import { FilterPipe} from './search/filter.pipe';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
-
+import { ResultsItemComponent } from './results/results-item/results-item.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MainComponent,
     ResultsComponent,
     SearchComponent,
-    FilterPipe
+    FilterPipe,
+    ResultsItemComponent
   ],
   imports: [
     BrowserModule,
